@@ -149,32 +149,144 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
   gap: 24px;
 }
 
-.card {
+/* ===== 데모 카드 ===== */
+.demo-card {
   background: var(--bg2);
   border: 1px solid #232b3d;
   border-radius: 16px;
-  padding: 30px 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  transition: box-shadow 0.3s ease;
+}
+.demo-card:hover {
+  box-shadow: 0 12px 30px rgba(155, 92, 255, 0.25);
+}
+
+.demo-preview {
   min-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  border-right: 1px solid #232b3d;
 }
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(155, 92, 255, 0.25);
+
+.text-preview {
+  text-align: center;
+  overflow: hidden;
+}
+
+/* text 섹션 preview에서 폰트 크기 조정 */
+.text-preview .text-gradient {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+.text-preview .text-wave {
+  font-size: 1.3rem;
+}
+.text-preview .text-typing {
+  font-size: 0.9rem;
+}
+.text-preview .text-glow {
+  font-size: 1.4rem;
+  letter-spacing: 3px;
 }
 
 .card-label {
   font-size: 0.85rem;
   color: #8a96ad;
   letter-spacing: 1px;
+}
+
+/* ===== 코드 패널 ===== */
+.code-panel {
+  display: flex;
+  flex-direction: column;
+  background: #080c14;
+}
+
+.code-tabs {
+  display: flex;
+  background: #0d1117;
+  border-bottom: 1px solid #1e2638;
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  padding: 9px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #5a6880;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.tab-btn:hover { color: #9aa7bd; }
+.tab-btn.active {
+  color: var(--cyan);
+  border-bottom-color: var(--cyan);
+}
+
+.tab-content {
+  display: none;
+  margin: 0;
+  padding: 14px 16px;
+  font-size: 0.74rem;
+  line-height: 1.75;
+  font-family: "Consolas", "Fira Code", "Courier New", monospace;
+  color: #b8c5de;
+  overflow: auto;
+  flex: 1;
+  white-space: pre;
+  tab-size: 2;
+}
+.tab-content.active { display: block; }
+.tab-content code { background: none; color: inherit; font-size: inherit; }
+
+/* ===== Living Scene 코드 패널 ===== */
+.scene-demo {
+  border: 1px solid #232b3d;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.scene-demo:hover {
+  box-shadow: 0 12px 30px rgba(155, 92, 255, 0.25);
+}
+.scene-demo .scene {
+  border-radius: 0;
+}
+.scene-code {
+  border-top: 1px solid #232b3d;
+  max-height: 280px;
+}
+.scene-code .tab-content {
+  max-height: 240px;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .demo-card {
+    grid-template-columns: 1fr;
+  }
+  .demo-preview {
+    border-right: none;
+    border-bottom: 1px solid #232b3d;
+    min-height: 140px;
+  }
 }
 
 /* ===== 1. 로더 ===== */
